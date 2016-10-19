@@ -1,0 +1,508 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="angular-material.min.css">
+<link rel="stylesheet" href="studentIndex.min.css">
+<script src="jquery.min.js"></script>
+<script src="jquery-ui.min.js"></script>
+<script src="angular.min.js"></script>
+<script src="angular-aria.min.js"></script>
+<script src="angular-animate.min.js"></script>
+<script src="angular-material.min.js"></script>
+<script src="angular-ui.min.js"></script>
+<style type="text/css">
+	.li_selected{
+		background-color:grey; 
+		cursor:move;
+	}
+</style>
+<body ng-app="almaBaseApp" ng-cloak>
+	<div ng-controller="MainCtrl">
+		<div>
+		<div ng-controller="headerCtrl"  class="header-final" style="left: 192px;" ng-cloak>
+		    <div class="container" style="width:100%;background-color:white;min-height:59px;display:block;position:relative;transition:all 0.3s linear;padding-right:0;">
+		      <div class="pull-left" style="position:relative;">  
+		        <div class="visible-xs visible-sm fl-left menu-left-panel ver-centered" ng-click="showPanel()">
+		          <span class="icon-menu2"></span>
+		        </div>
+		        <nav class="" role="navigation">
+		          <ul class="nav navbar-nav navbar-right fl-right">
+		            <li class="fl-left dropdown">
+		              <a href="#" class="dropdown-toggle header-main-profile-logout" data-toggle="dropdown">
+		                <div class="main-pic my-pic header"></div>
+		                <span class="caret" style="margin:12px 0 0 6px;"></span>
+		              </a>
+		            </li>
+		          </ul>
+		        </nav>
+		      </div>
+		    </div>
+ 		</div>
+		<div class="squeeze-xs squeeze-sm">
+		    <div class="panel-main-left"  ng-cloak> 
+		      <div class="pull-left panel--head">
+		        <a href="#" class="fl-left" style=" margin-left: 16px;">
+		         Regency University CRM
+		        </a>
+		      </div>
+		      <ul class="list-group fl-left">
+		        <div ng-repeat="(i,elem) in panelElem track by $index">
+		          <li ng-click="panelLiClicked(i)" ng-class="{'active':showContainer==panelContainerMap[i]}"  class="list-group-item ripple" data-tabId="container{{panelContainerMap[i]}}">
+		            <span class="icon-css"><i class="material-icons fl-left panel-icons">{{panelIconMap[i]}}</i></span>
+		            <span class="panel-main-left-text">
+		            	{{elem}}
+		            </span>
+		          </li>
+		        </div>
+		      </ul>
+		    </div>  
+ 		</div>
+ 		<div  ng-cloak >
+		    <div class="container container--main" >  
+		      	<div class="wrapper">
+		        	<div class="container-main">
+		          		<div class="col-md-12 col-lg-12 dashboard--main">
+		          			<div ng-controller="sectionCtrl" class="wrapper wrapper-about toggle-achievement" style="padding:0;">              
+		              			<div class="row" style="margin: 25px 0 5px;padding: 0 25px;">
+		                			<div class="pull-left cards-header" style="margin-bottom: 0px;">
+					                  Profile View
+							        	<md-button class="dataCardTop right" style="margin-top:2px;float:right;" ng-click="showAdd($event)">Add New Section</md-button>
+					                </div>
+					            </div>
+			            		<div  ng-controller="sectionListCtrl" >  
+			            			<div  class="pull-left div-table-leaderboard" style="position:relative;">
+						            	<ul id="sortableList" class="collapsible popout card1UL" data-collapsible="accordion">
+											<li id={{section.id}} ng-repeat="section in sections | orderBy:'pos'" style="width:100%;tabindex:-1;padding:15px;">
+							              		<div class="collapsible-header" style="padding:0px;padding-bottom: 15px;border: 2px dashed #e8e8e8;    border-radius: 8px; position: relative;">
+							                		<div style="font-size: 21px;    line-height: 1;">
+							                			<div class="top-header" style="height: 61px; background-color: #f5f4f4;">
+															<p style=" margin: 11px 2px 2px 13px;display: inline-block; font-weight: 500;    padding: 1px; font-size: 27px; line-height: normal;">{{section.name}}</p>
+															<md-button  class="md-button-primary ver-centered-d" style="position: relative; margin-top: 0px;  color: #3f51b5;" ng-click="deleteSection($event,section)"> delete</md-button>
+															<md-button  class="md-button-primary ver-centered-d" style="position: relative;   color: #3f51b5;float: right;" ng-click="addFields(event,section)"> Add Fields</md-button>
+
+															<md-button  class="move md-button-primary ver-centered-d" style="position: relative; margin-top: 0px;  color: #3f51b5;" onClick="move(this);" > Move </md-button>
+															<md-button class="md-button-primary ver-centered-d" style="position: relative; margin-top: 0px;  color: #3f51b5;" ng-click="showeditSection($event,section)" >Edit</md-button>
+														</div>
+							                  			<div style="margin-top: 20px; margin-bottom: 8px;overflow:auto;">
+								                 			<div ng-show="section.fields.length" style="float:left;display:inline-block; margin:2px;max-width:100%;" ng-repeat="(j,field) in section.fields">
+												       			<p style=" background: #7D51AF;padding: 10px;margin: 9px;font-weight: 600; color: white;border-radius: 7px;">{{field.name}}
+														    		<md-icon style="color: #ab9c9c;cursor:pointer" ng-click="removeField(section,j)">clear</md-icon>
+																</p>
+								                      		</div>
+								                      		<div ng-show="!section.fields.length" style="text-align:center;" >
+											        			<p style="color:grey;">No Fields Exist</p>
+								                      		</div>
+								                      		<div style="clear:both;">
+								                      	</div>
+									                </div>
+									            </div>
+									        </li>
+									    </ul>         	
+						            </div>  
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>  
+			</div>
+		</div>
+    </div>
+	<script type="text/javascript">
+		var app = angular.module('almaBaseApp',['ngMaterial','sectionService','ui']);
+		app.controller('MainCtrl',['$scope','$mdDialog','$mdSidenav','$mdUtil','$log','$location','$window','$mdToast','$http','$filter','SectionService',function($scope,$mdDialog,$mdSidenav,$mdUtil,$log,$location,$window,$mdToast,$http,$filter,SectionService){
+			$scope.logout = function(){
+		      $window.location.href = '/users/logout';
+		    }
+			$scope.loadURL = function(){
+				var path = $location.path();
+				var pathArr = path.split("/");
+			};
+			$scope.panelLiClicked = function(i){
+			      $location.path('/index/' + $scope.arrMap[$scope.panelContainerMap[i]]);
+			      $scope.loadURL();
+			      return;
+			  };
+	    
+			$scope.init=function(){		     	
+			    $scope.panelElem = ['Home'];
+			    $scope.panelIconMap = ['home'];
+			    $scope.panelContainerMap = [1];
+			    $scope.urlName = [''];
+			    $scope.arrMap = {
+			        '1':$scope.urlName[0]
+			    };
+			    $scope.loadURL();				
+			}
+			$scope.init();
+		}])
+		.config(['$locationProvider',function($locationProvider) {
+		  $locationProvider.html5Mode(false).hashPrefix('!');
+		}]);
+		angular.module('sectionService', []).factory('SectionService',['$rootScope','$location',function($rootScope,$location){
+			var service={};
+			service.gotSectionList=function(){
+		        $rootScope.$broadcast("got_section_list");
+		     }
+		     $rootScope.$watch(function () {return $location.path()}, function (newLocation, oldLocation) {
+		        if($rootScope.actualLocation === newLocation) {
+		            window.location.reload();
+		        }
+		     });
+			return service;
+		}]);
+		
+		app.controller('headerCtrl',['$scope', '$http', '$log', '$mdDialog','$mdToast', '$location', '$timeout', 'SectionService',function ($scope, $http, $log, $mdDialog,$mdToast, $location, $timeout, SectionService){
+		}]);
+	  	app.controller('sectionCtrl',['$scope', '$http', '$log', '$mdDialog','$mdToast', '$location', '$timeout', 'SectionService',function ($scope, $http, $log, $mdDialog,$mdToast, $location, $timeout, SectionService){
+		     $scope.$on('got_section_list', function(e) {
+		          $scope.sections=SectionService.sections;
+		          $scope.fields=SectionService.fields;
+		     }); 
+		     $scope.showAdd = function(ev) {
+		        var p=0;
+		          $mdDialog.show({
+		               controller: 'addSectionsCtrl',
+		               templateUrl: 'newSection.tmpl.html',
+		               targetEvent: ev,
+		               locals:{s:p},
+		               resolve: {		                    
+		                    sections: function(){
+			                    return $scope.sections;
+			                },fields:function(){
+			                	return $scope.fields;
+			                }
+		               }
+		          })
+		     };
+		     $scope.loadData=function(){
+		     	var data = '[ { "id":"2","name": "Biodata","pos":1, "fields": [1]}, { "id":"3","name": "Details ","pos":0, "fields": [2,3,4,1]}, { "id":"1","name": "Work Experience","pos":2, "fields": [2,1,4] },{ "id":"5","name": "Education","pos":3, "fields": [2,1,4] }]';
+				var fields='{"1":{"name":"Full Name","property":""},"2":{"name":"contact Number","property":"" },"3":{"name":"Email Id","property":"" },"4":{"name":"Facebook Id","property":"" }}';
+				$scope.sections_raw_data=JSON.parse(data);
+				$scope.fields=JSON.parse(fields);	
+		     }
+		     $scope.constructSectionStructure=function(){
+				var tarray = [];
+	               $scope.sections_raw_data.map(function(item){
+	               	  var newarr={};
+	               	  newarr['id']=item.id;
+	                  newarr['name']=item.name;
+	                  newarr['pos']=item.pos;
+	                  newarr['fields']=[];
+	                  for(var i=0;i<item.fields.length;i++){
+	                  	var field={};
+	                  	field['id']=item.fields[i];
+	                  	field['name']=$scope.fields[item.fields[i]].name;
+	                  	field['property']=$scope.fields[item.fields[i]].property;
+	                  	
+	                  	newarr.fields.push(field);
+	                  }
+	                  tarray.push(newarr);  
+	              });
+                $scope.sections=tarray;
+                SectionService.sections=$scope.sections;
+                SectionService.fields=$scope.fields;
+                SectionService.gotSectionList();
+		     }  
+		    $scope.init=function(){
+		    	$scope.loadData();
+		    	$scope.constructSectionStructure();
+		    }
+		    $scope.init();
+		}]);
+	  	app.controller('sectionListCtrl',['$scope', '$mdDialog','$http','$filter','SectionService', function ($scope, $mdDialog,$http,$filter,SectionService) {	    
+		    $scope.$on('got_section_list', function(e) {
+		          $scope.sections=SectionService.sections;
+		          $scope.fields=SectionService.fields;
+		    });
+		   
+		    $scope.showeditSection = function(ev,p) {
+
+		        $scope.section=p;
+		          $mdDialog.show({
+		               controller: 'addSectionsCtrl',
+		               templateUrl: 'editSection.tmpl.html',
+		               targetEvent: ev,
+		               locals: { s:p },
+		               resolve:{
+			                sections: function(){
+			                    return $scope.sections;
+			                },fields:function(){
+			                	return $scope.fields;
+			                }
+		               }
+		          })
+		     };
+		     $scope.addFields = function(ev,p) {
+		        $scope.section=p;
+		          $mdDialog.show({
+		               controller: 'addSectionsCtrl',
+		               templateUrl: 'addFields.tmpl.html',
+		               targetEvent: ev,
+		               locals: { s:p },
+		               resolve:{
+			                sections: function(){
+			                    return $scope.sections;
+			                },fields:function(){
+			                	return $scope.fields;
+			                }
+		               }
+		          })
+		     };
+			$scope.removeField=function(section,findex){
+				$scope.sections.map(function(item){
+					if(item.id==section.id){
+						item.fields.splice(findex,1);
+					}
+				});	
+				SectionService.sections=$scope.sections;
+				SectionService.gotSectionList();
+ 			}
+			$scope.deleteSection = function(ev,s) {
+				var found=-1;
+				var confirm = $mdDialog.confirm()
+				      .title('Would you like to delete this section ?')
+				      .textContent('All of the data will be deleted.')
+				      .ariaLabel('Section Delete')
+				      .targetEvent(ev)
+				      .ok('Delete')
+				      .cancel('Cancel');
+
+				$mdDialog.show(confirm).then(function() {
+					$scope.sections.map(function(section,i){
+						if(section.id==s.id){
+							found=i;
+						}
+					});
+					if(found > -1){
+						$scope.sections.splice(found,1);
+		                SectionService.sections=$scope.sections;
+		                SectionService.fields=$scope.fields;
+		                SectionService.gotSectionList();
+					}
+				}, function() {});
+			};
+		}]);
+		
+		app.controller('addSectionsCtrl',['$scope','$mdBottomSheet','$http','$mdDialog','SectionService','sections','s','fields',function ($scope,$mdBottomSheet,$http,$mdDialog,SectionService,sections,s,fields){
+			$scope.sections=sections;
+		    $scope.fields=fields;
+		    $scope.section=s;
+		    $scope.cancel = function() {
+		        $mdDialog.cancel();
+		    };
+		    $scope.onPosChange=function(){
+			    $scope.options=[];
+		    	if(!parseInt($scope.sectionPosition)){
+			    		$scope.sections.map(function(item){
+				    		if(s.pos -1 != item.pos  && item.pos != s.pos){
+				    			$scope.options.push(item);
+				    		}
+				    	});
+			   	}else{
+		    		$scope.sections.map(function(item){
+			    		if(s.pos + 1 != item.pos && item.pos != s.pos){
+			    			$scope.options.push(item);
+			    		}
+			    	});
+		    	}
+		    }
+		    $scope.init=function(){ 
+		    	$scope.sectionPosition=0;
+		    	$scope.sectionRelIndex=0;
+		    	$scope.onPosChange();
+		    }
+		    $scope.init(); 
+		    $scope.addSection = function() {
+		    	var new_pos = parseInt($scope.sectionRelIndex);
+	    		if(!s){
+			    	$scope.section.id=new Date().getTime();
+			    	if($scope.sectionPosition==0){
+			    		new_pos+=1;
+			    	}
+		    		$scope.sections.map(function(item){
+			    		if(new_pos <= item.pos){
+			    			item.pos+=1;
+			    		}
+			    	});
+			   		$scope.section.pos=new_pos;
+			   		$scope.section.fields=[];
+		      		$scope.sections.push($scope.section);
+	    		}else{
+	    			var cpos=$scope.section.pos;
+	    			if(cpos < new_pos){
+	    				$scope.sections.map(function(item){
+		    				if(item.pos > cpos && $scope.section.id != item.id && new_pos  >= item.pos ){
+				    			item.pos-=1;
+				    		}
+				    	});
+	    			}else{
+	    				$scope.sections.map(function(item){
+		    				if(item.pos >= new_pos && $scope.section.id != item.id && cpos  > item.pos ){
+				    			item.pos+=1;
+				    		}
+				    	});
+	    			}
+					$scope.section.pos=new_pos;
+	    		}
+		    	$scope.cancel();
+                SectionService.sections=$scope.sections;
+                SectionService.gotSectionList();
+		    };
+		    $scope.addField=function(){
+		    	$scope.cancel();
+		    	$scope.field.id= new Date().getTime();
+		    	$scope.fields[$scope.field.id]={'name':$scope.field.name,'property':$scope.field.property};
+
+				var field={};
+              	field['id']=$scope.field.id;
+              	field['name']=$scope.field.name;
+              	field['property']=$scope.field.property;
+		    	$scope.section.fields.push(field);	
+		        SectionService.sections=$scope.sections;
+		        SectionService.fields=$scope.fields;
+		        SectionService.gotSectionList();
+		    }
+		}]);
+
+    	function move(eve){				
+    		var ul_id=$(eve).parents().eq(4).attr('id');
+    		var all_li='#'+ul_id+' li div.collapsible-header';
+    		if($(eve).parents().eq(2).hasClass( "li_selected" )){
+    			$(all_li).removeClass("li_selected");
+    			$('#sortableList').sortable({ 
+			        disabled: true 
+			    }).disableSelection();
+    		}else{
+    			$(all_li).removeClass("li_selected");
+				$(eve).parents().eq(2).toggleClass("li_selected");      
+				$('#sortableList').sortable({ 
+					disabled: false ,
+					filter: "li",
+					zIndex:9999,
+					axis:"y",
+				    opacity:0.5
+			    }).disableSelection();
+    		}
+    	}
+	</script>
+	<script type="text/ng-template" id="newSection.tmpl.html">
+	 	<md-dialog style="width:60%;">
+		    <form name="uploadSection">
+		      <div  class="tabsdemoDynamicHeight">
+		        <md-content class="md-padding"  style="padding:10px 0 0;">
+		          <md-tabs md-dynamic-height md-border-bottom>
+		            <md-tab label="Add Section">
+		              <md-content class="md-padding formElements" style="padding-bottom:0;">
+		                <md-dialog-content class="sticky-container">
+		                  <md-subheader class="md-sticky-no-effect">Add New Section</md-subheader>
+		                    <div layout="row" class="addStudent" style="padding-left:20px; ">
+		                      <md-input-container style="width:50%" class="input-text" required>
+		                        <label>Name</label>
+		                        <input type="text" ng-model="section.name" placeholder="Enter Section name" name="add_name" required>
+		                      </md-input-container>
+							<md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="position " ng-model="sectionPosition " ng-change="onPosChange()">
+								  <md-option  value="-1">Above</md-option>
+								  <md-option  value="0">Below</md-option>
+								</md-select>
+
+								<md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="Select Section " ng-model="sectionRelIndex">
+								  <md-option ng-repeat="(i,sectiono) in options | orderBy:'pos'"  value={{sectiono.pos}}>{{sectiono.name}}</md-option>
+								</md-select>	
+		                    </div>
+		                </md-dialog-content>
+		                <div class="md-actions md-layout">
+		                  <md-button ng-click="addSection()" ng-disabled="uploadSection.$invalid" class="md-primary">
+		                    ADD
+		                  </md-button>
+		                  <md-button type="button" ng-click="cancel()" class="md-primary">
+		                    CANCEL
+		                  </md-button>
+		                </div>	                
+		              </md-content>
+		            </md-tab>
+		          </md-tabs>
+		        </md-content>
+		      </div>
+		    </form>
+	 	</md-dialog>
+	</script>
+	<script type="text/ng-template" id="editSection.tmpl.html">
+	 <md-dialog style="width:60%;">
+	    <form  name="uploadSection">
+	      <div class="tabsdemoDynamicHeight">
+	        <md-content class="md-padding"  style="padding:10px 0 0;">
+	          <md-tabs md-dynamic-height md-border-bottom>
+	            <md-tab label="Individual Upload">
+	              <md-content class="md-padding formElements" style="padding-bottom:0;">
+	                <md-dialog-content class="sticky-container">
+	                  <md-subheader class="md-sticky-no-effect">Update Section Details</md-subheader>
+	                    <div layout="row" class="addStudent" style="padding-left:20px; padding-right:20px;">
+		                  <md-input-container style="width:50%" class="input-text">
+							<label>Name</label>
+							<input type="text"  ng-readonly="true" ng-model="section.name" name="name" required="">
+						  </md-input-container>
+						  <md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="position " ng-model="sectionPosition " ng-change="onPosChange()">
+						   <md-option  value="-1">Above</md-option>
+						   <md-option  value="0">Below</md-option>
+						  </md-select>
+						  <md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="Select Section " ng-model="sectionRelIndex">
+						  	<md-option ng-repeat="(i,sectiono) in options | orderBy:'pos'"  value={{sectiono.pos}}>{{sectiono.name}}</md-option>
+						  </md-select>
+	                   </div>
+	                </md-dialog-content>
+	                <div class="md-actions md-layout">
+	                  <md-button ng-click="addSection()" class="md-primary">
+	                    Update
+	                  </md-button>
+	                  <md-button type="button" ng-click="cancel()" class="md-primary">
+	                    cancel
+	                  </md-button>
+	                </div>
+	              </md-content>
+	            </md-tab>
+	          </md-tabs>
+	        </md-content>
+	      </div>
+	    </form>
+	 </md-dialog>
+	</script>
+	<script type="text/ng-template" id="addFields.tmpl.html">
+	 <md-dialog style="width:60%;">
+	    <form  name="AddFields">
+	      <div class="tabsdemoDynamicHeight">
+	        <md-content class="md-padding"  style="padding:10px 0 0;">
+	          <md-tabs md-dynamic-height md-border-bottom>
+	            <md-tab label="Add Fields">
+	              <md-content class="md-padding formElements" style="padding-bottom:0;">
+	                <md-dialog-content class="sticky-container">
+	                  <md-subheader class="md-sticky-no-effect">Add Fields</md-subheader>
+	                    <div layout="row" class="addStudent" style="padding-left:20px; padding-right:20px;">
+		                  <md-input-container style="width:50%" class="input-text">
+	                        <label>Field Name</label>
+	                        <input type="text"  ng-model="field.name" name="text" required>                
+		                  </md-input-container>
+						  <md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:15px;margin-left:15px;top:-15px;width:50%;" placeholder="Property " ng-model="field.property">
+						    <md-option  value="Hostel">Hostel</md-option>
+						    <md-option  value="MedicalResidency">Medical Residency</md-option>
+						    <md-option  value="BoardCertificatio">Board Certificatio</md-option>
+						    <md-option  value="IPlocation">IP location</md-option>
+						    <md-option  value="BrowserAgent">Browse rAgent</md-option>
+						    <md-option  value="ContactAddress">Contact Address</md-option>
+						   </md-select>
+	                  	</div>
+	                </md-dialog-content>
+	                <div class="md-actions md-layout">
+	                  <md-button ng-click="addField()" ng-disabled="AddFields.$invalid" class="md-primary">  
+	                    Update
+	                  </md-button>
+	                  <md-button type="button" ng-click="cancel()" class="md-primary">
+	                    cancel
+	                  </md-button>
+	                </div>
+	              </md-content>
+	            </md-tab>
+	          </md-tabs>
+	        </md-content>
+	      </div>
+	    </form>
+	 </md-dialog>
+	</script>
+</body>
