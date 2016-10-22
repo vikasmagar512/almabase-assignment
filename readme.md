@@ -44,4 +44,3 @@ In each section, the fields are shown and these fields can be removed by clickin
 			- Name
 			- Property
 * Don't Refresh the Webpage as No server Backend calls are made.You will loose all the data.
-
