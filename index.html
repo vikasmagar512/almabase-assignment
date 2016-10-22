@@ -20,9 +20,6 @@
 		<div ng-controller="headerCtrl"  class="header-final" style="left: 192px;" ng-cloak>
 		    <div class="container" style="width:100%;background-color:white;min-height:59px;display:block;position:relative;transition:all 0.3s linear;padding-right:0;">
 		      <div class="pull-left" style="position:relative;">  
-		        <div class="visible-xs visible-sm fl-left menu-left-panel ver-centered" ng-click="showPanel()">
-		          <span class="icon-menu2"></span>
-		        </div>
 		        <nav class="" role="navigation">
 		          <ul class="nav navbar-nav navbar-right fl-right">
 		            <li class="fl-left dropdown">
@@ -398,13 +395,14 @@
 		                        <label>Name</label>
 		                        <input type="text" ng-model="section.name" placeholder="Enter Section name" name="add_name" required>
 		                      </md-input-container>
-					<md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="position " ng-model="sectionPosition " ng-change="onPosChange()">
-					  <md-option  value="-1">Above</md-option>
-					  <md-option  value="0">Below</md-option>
-					</md-select>
-					  <md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="Select Section " ng-model="sectionRelIndex">
-					  <md-option ng-repeat="(i,sectiono) in options | orderBy:'pos'"  value={{sectiono.pos}}>{{sectiono.name}}</md-option>
-					</md-select>	
+							<md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="position " ng-model="sectionPosition " ng-change="onPosChange()">
+								  <md-option  value="-1">Above</md-option>
+								  <md-option  value="0">Below</md-option>
+								</md-select>
+
+								<md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="Select Section " ng-model="sectionRelIndex">
+								  <md-option ng-repeat="(i,sectiono) in options | orderBy:'pos'"  value={{sectiono.pos}}>{{sectiono.name}}</md-option>
+								</md-select>	
 		                    </div>
 		                </md-dialog-content>
 		                <div class="md-actions md-layout">
@@ -435,16 +433,16 @@
 	                  <md-subheader class="md-sticky-no-effect">Update Section Details</md-subheader>
 	                    <div layout="row" class="addStudent" style="padding-left:20px; padding-right:20px;">
 		                  <md-input-container style="width:50%" class="input-text">
-					<label>Name</label>
-					<input type="text"  ng-readonly="true" ng-model="section.name" name="name" required="">
-				  </md-input-container>
-				  <md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="position " ng-model="sectionPosition " ng-change="onPosChange()">
-				   <md-option  value="-1">Above</md-option>
-				   <md-option  value="0">Below</md-option>
-				  </md-select>
-				  <md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="Select Section " ng-model="sectionRelIndex">
-					<md-option ng-repeat="(i,sectiono) in options | orderBy:'pos'"  value={{sectiono.pos}}>{{sectiono.name}}</md-option>
-				  </md-select>
+							<label>Name</label>
+							<input type="text"  ng-readonly="true" ng-model="section.name" name="name" required="">
+						  </md-input-container>
+						  <md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="position " ng-model="sectionPosition " ng-change="onPosChange()">
+						   <md-option  value="-1">Above</md-option>
+						   <md-option  value="0">Below</md-option>
+						  </md-select>
+						  <md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:50px;margin-left:50px;top:-15px;" placeholder="Select Section " ng-model="sectionRelIndex">
+						  	<md-option ng-repeat="(i,sectiono) in options | orderBy:'pos'"  value={{sectiono.pos}}>{{sectiono.name}}</md-option>
+						  </md-select>
 	                   </div>
 	                </md-dialog-content>
 	                <div class="md-actions md-layout">
@@ -474,18 +472,18 @@
 	                <md-dialog-content class="sticky-container">
 	                  <md-subheader class="md-sticky-no-effect">Add Fields</md-subheader>
 	                    <div layout="row" class="addStudent" style="padding-left:20px; padding-right:20px;">
-		                <md-input-container style="width:50%" class="input-text">
+		                  <md-input-container style="width:50%" class="input-text">
 	                        <label>Field Name</label>
 	                        <input type="text"  ng-model="field.name" name="text" required>                
 		                  </md-input-container>
-				  <md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:15px;margin-left:15px;top:-15px;width:50%;" placeholder="Property " ng-model="field.property">
-				    <md-option  value="Hostel">Hostel</md-option>
-				    <md-option  value="MedicalResidency">Medical Residency</md-option>
-				    <md-option  value="BoardCertification">Board Certification</md-option>
-				    <md-option  value="IPLocation">IP Location</md-option>
-				    <md-option  value="BrowserAgent">Browse rAgent</md-option>
-				    <md-option  value="ContactAddress">Contact Address</md-option>
-				   </md-select>
+						  <md-select class="dataCardtop single-element" style="float:right;position:relative;margin-right:15px;margin-left:15px;top:-15px;width:50%;" placeholder="Property " ng-model="field.property">
+						    <md-option  value="Hostel">Hostel</md-option>
+						    <md-option  value="MedicalResidency">Medical Residency</md-option>
+						    <md-option  value="BoardCertificatio">Board Certificatio</md-option>
+						    <md-option  value="IPlocation">IP location</md-option>
+						    <md-option  value="BrowserAgent">Browse rAgent</md-option>
+						    <md-option  value="ContactAddress">Contact Address</md-option>
+						   </md-select>
 	                  	</div>
 	                </md-dialog-content>
 	                <div class="md-actions md-layout">
