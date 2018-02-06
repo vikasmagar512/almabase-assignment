@@ -24,16 +24,16 @@ In each section, the fields are shown and these fields can be removed by clickin
 
 
 ## Assumptions
-* Data is hard Coded.
+* All Data is hard Coded.
 	- see the `loadData` method in `sectionctrl`.
-	- To dynamically load the data, we need to add the server api call to this method. 
+	- To dynamically load the data, we need to add server api call to this method. 
 * To save the data
-	- At any time the data is present in scope variables
+	- At any time, the data is present in scope variables
 		* Section Data
 			- present in the `$scope.sections` variable
-		* Fields Data
+		* Field Data
 			- present in the `$scope.fields` variable
-	- To send the data to server, Just a call is needed which will send data to server
+	- To send the data to server, a API call is needed
 		- Individual Section attributes
 			- id
 			- Name
